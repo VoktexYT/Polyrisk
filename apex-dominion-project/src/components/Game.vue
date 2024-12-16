@@ -1,17 +1,28 @@
 <template>
-    <h1>{{ msg }}</h1>
-    <div ref="gameContainer" class="game-container"></div>
+    <div ref="gameContainer" class="game-container">
+        <Interface :width="width" :height="height" />
+    </div>
 </template>
   
 <script lang="ts">
-    import { Vue } from 'vue-class-component';
+    import { Vue, Options } from 'vue-class-component';
+    import Interface from './Interface.vue';
+
     import Phaser from 'phaser';
 
     import BootScene from '@/scenes/BootScene';
     import MainScene from '@/scenes/MainScene';
+
+    @Options({
+        components: {
+            Interface,
+        },
+    })
   
     export default class Game extends Vue {
         private game!: Phaser.Game;
+        width: string = "";
+        height: string = "";
 
         mounted() {
             this.createGame();
@@ -24,13 +35,21 @@
         private createGame() {
             const config: Phaser.Types.Core.GameConfig = {
                 type: Phaser.AUTO,
-                width: 800,
-                height: 600,
+                width: 1920,
+                height: 1080,
                 parent: this.$refs.gameContainer as HTMLElement,
-                scene: [BootScene, MainScene], // Add the scenes here
+                scene: [BootScene, MainScene],
+                scale: {
+                    mode: Phaser.Scale.FIT
+                }
             };
 
             this.game = new Phaser.Game(config);
+
+            this.game.scale.on('resize', () => {
+                this.width = this.game.canvas.style.width;
+                this.height = this.game.canvas.style.height;
+            });
         }
 
         private destroyGame() {
