@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 
 export default class MainScene extends Phaser.Scene {
-    private logo: Phaser.GameObjects.Image | undefined;
+    zoomPointer: boolean = false;
+
     constructor() {
         super({ key: 'MainScene' });
     }
@@ -41,15 +42,27 @@ export default class MainScene extends Phaser.Scene {
 
     create() {
         this.createMap();
-        
-        this.cameras.main.setBounds(0, 0, 1024, 1024);
+
         this.cameras.main.setZoom(1);
-        this.cameras.main.centerOn(0, 0);
+
         const THIS = this;
-        this.input.on('pointerdown', function () {
+
+        this.input.on('pointerdown', function (pointer: Phaser.Input.Pointer) {
             var cam = THIS.cameras.main;
-            cam.pan(500, 500, 2000, 'Power2');
-            cam.zoomTo(4, 3000);
+
+            if (THIS.zoomPointer)
+            {
+                cam.zoomTo(1, 1000);
+            }
+
+            else
+            {
+                cam.zoomTo(1.5, 1000);
+                cam.pan(pointer.x, pointer.y, 1000, 'Power2', true);
+                cam.centerOn(pointer.x, pointer.y);
+            }
+
+            THIS.zoomPointer = !THIS.zoomPointer;
         }, this);
     }
 
@@ -65,9 +78,6 @@ export default class MainScene extends Phaser.Scene {
     }
 
     update() {
-        if (this.logo)
-        {
-            this.logo.x += 0.1;
-        }
+        
     }
 }

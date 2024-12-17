@@ -29,6 +29,7 @@
 .interface
 {
     position: absolute;
+    pointer-events: none;
 }
 
 #title
