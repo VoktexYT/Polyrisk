@@ -22,7 +22,7 @@ export default class MainScene extends Phaser.Scene {
         let addMargin = true;
         let num = 1;
 
-        for (let y=100; y<2000; y += 40)
+        for (let y=100; y<2000; y += 43)
         {
             if (addMargin) {
                 num = 1;
