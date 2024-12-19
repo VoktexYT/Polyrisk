@@ -9,6 +9,7 @@ export default class BootScene extends Phaser.Scene {
 
 	preload() {
 		this.load.spritesheet(constant.LOAD_KEY_SPRITESHEET_3D_TILE, constant.LOAD_SRC_SPRITESHEET_3D_TILE, constant.LOAD_CONFIG_SPRITESHEET_3D_TILE);
+		this.load.spritesheet(constant.LOAD_KEY_SPRITESHEET_BORDER_TILE, constant.LOAD_SRC_SPRITESHEET_BORDER_TILE, constant.LOAD_CONFIG_SPRITESHEET_BORDER_TILE);
 	}
 
 	create() {

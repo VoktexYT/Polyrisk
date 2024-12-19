@@ -34,13 +34,21 @@
 
         private createGame() {
             const config: Phaser.Types.Core.GameConfig = {
-                type: Phaser.AUTO,
+                type: Phaser.WEBGL,
                 width: 1920,
                 height: 1080,
                 parent: this.$refs.gameContainer as HTMLElement,
                 scene: [BootScene, MainScene],
                 scale: {
                     mode: Phaser.Scale.FIT
+                },
+                fps: {
+                    target: 60,
+                    forceSetTimeOut: true
+                },
+                render: {
+                    pixelArt: false,
+                    antialias: true
                 }
             };
 

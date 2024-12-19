@@ -1,6 +1,6 @@
 <template>
     <div class="interface" :style="dynamicSize">
-        <h1 id="title">Un simple menu</h1>
+        <!-- <h1 id="title">Un simple menu</h1> -->
     </div>
 </template>
 

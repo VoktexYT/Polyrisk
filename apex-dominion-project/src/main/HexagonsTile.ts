@@ -4,10 +4,12 @@ import * as constant from "./Const";
 
 
 export default class HexagonTile {
-    public sprite: Phaser.GameObjects.Sprite | undefined;
+    public image: Phaser.GameObjects.Image | undefined;
+
     public width = 154;
     public height = 156;
-    public readonly scale = 0.4;
+    public readonly scale = 0.5;
+    private isActive = false;
 
     constructor(
         private readonly scene: Phaser.Scene) {
@@ -16,38 +18,52 @@ export default class HexagonTile {
         }
 
     public drawTile(position: constant.position2D, idx: number) {
-        this.sprite = this.scene.add.sprite(
+        this.image = this.scene.add.image(
             position.x, position.y, constant.LOAD_KEY_SPRITESHEET_3D_TILE, idx
         );
 
-        this.sprite.setScale(this.scale);
-        this.sprite.setInteractive();
+        this.image.setScale(this.scale);
+        this.image.setInteractive();
 
-        // this.createEvent();
+        this.createEvent();
     }
 
     private hoverEvent() {
-        if (this.sprite) {
+        if (this.image) {
 
-            this.sprite.on('pointerover', () => {
-                if (!this.sprite) {return;}
-                this.sprite.setTint(0xFFFF00);
+            this.image.on('pointerover', () => {
+                if (!this.image) {return;}
+                this.image.setTint(0xAAAAAA);
             });
 
-            this.sprite.on('pointerout', () => {
-                if (!this.sprite) {return;}
-                this.sprite.clearTint();
+            this.image.on('pointerout', () => {
+                if (!this.image) {return;}
+                this.image.clearTint();
             });
         }
     }
 
     private clickEvent() {
-        if (this.sprite) {
-            this.sprite.on('pointerdown', () => {
-                if (!this.sprite) {return;}
+        if (this.image) {
+            this.image.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+                if (!this.image) {return;}
 
-                this.sprite.setPosition(this.sprite.x, this.sprite.y - 20);
+                if (pointer.leftButtonDown()) {
+                    this.scene.tweens.add({
+                        targets: this.image,
+                        y: this.image.y + 40,
+                        duration: 50,
+                        yoyo: false,
+                        repeat: 0,
+                    });
+                }
             });
+        }
+    }
+
+    public moveY(newY: number) {
+        if (this.image) {
+            this.image.y += newY;
         }
     }
 
