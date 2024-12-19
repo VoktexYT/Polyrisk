@@ -7,7 +7,7 @@ export default class HexagonTile {
     public sprite: Phaser.GameObjects.Sprite | undefined;
     public width = 154;
     public height = 156;
-    public readonly scale = 0.5;
+    public readonly scale = 0.4;
 
     constructor(
         private readonly scene: Phaser.Scene) {

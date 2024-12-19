@@ -3,23 +3,14 @@ import Phaser from 'phaser';
 import * as constant from '@/main/Const'
 import HexagonTile from './HexagonsTile';
 
+import { generateNoiseMap } from './ProceduralMap';
+
 
 export default class HexagonMap {
-    private readonly width: number = 10;
-    private readonly height: number = 10;
+    private readonly width: number = 30;
+    private readonly height: number = 30;
 
-    private map: Array<Array<number>> = [
-        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-        [2, 2, 2, 1, 2, 2, 2, 2, 1, 2],
-        [2, 2, 2, 1, 1, 2, 2, 1, 1, 1],
-        [2, 1, 1, 1, 1, 1, 2, 1, 1, 1],
-        [1, 1, 1, 1, 3, 3, 1, 1, 1, 1],
-        [1, 1, 3, 3, 3, 3, 3, 1, 1, 1],
-        [1, 3, 3, 3, 3, 3, 3, 1, 1, 1],
-        [1, 3, 3, 3, 3, 3, 1, 1, 1, 1],
-        [1, 1, 3, 3, 1, 1, 1, 1, 1, 1],
-    ];
+    private map: Array<Array<number>> = generateNoiseMap(this.width, this.height);
 
     private defaultPosition: constant.position2D = {
         x: 500,
@@ -73,7 +64,47 @@ export default class HexagonMap {
 
                 position.y += ((hexagonTile.height + OFFSET_Y) * y);
 
-                hexagonTile.drawTile(position, this.map[y][x]);
+                const noiseValue = this.map[y][x];
+
+                if (noiseValue < 0.03) {
+                    hexagonTile.drawTile(position, 1);                
+                }
+
+                else if (noiseValue < 0.1) {
+                    hexagonTile.drawTile(position, 2);
+                }
+
+                else if (noiseValue < 0.3) {
+                    hexagonTile.drawTile(position, 3);                
+                }
+
+                else if (noiseValue < 0.4) {
+                    hexagonTile.drawTile(position, 4);                
+                }
+
+                else if (noiseValue < 0.5) {
+                    hexagonTile.drawTile(position, 5);
+                }
+
+                else if (noiseValue < 0.6) {
+                    hexagonTile.drawTile(position, 6);
+                }
+
+                else if (noiseValue < 0.7) {
+                    hexagonTile.drawTile(position, 7);
+                }
+
+                else if (noiseValue < 0.8) {
+                    hexagonTile.drawTile(position, 8);
+                }
+
+                else if (noiseValue < 0.9) {
+                    hexagonTile.drawTile(position, 9);
+                }
+
+                else {
+                    hexagonTile.drawTile(position, 10);                
+                }
 
                 if (hexagonTile.sprite) {
                     hexagonTileGroup.add(hexagonTile.sprite);
