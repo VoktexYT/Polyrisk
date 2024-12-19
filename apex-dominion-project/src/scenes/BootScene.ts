@@ -1,15 +1,14 @@
 import Phaser from 'phaser';
 
+import * as constant from '@/main/Const'
+
 export default class BootScene extends Phaser.Scene {
 	constructor() {
 		super({ key: 'BootScene' });
 	}
 
 	preload() {
-		this.load.spritesheet('3d-tiles', require('@/assets/Normal3Dtiles.png'), {
-			frameWidth: 154,
-			frameHeight: 156
-		});
+		this.load.spritesheet(constant.LOAD_KEY_SPRITESHEET_3D_TILE, constant.LOAD_SRC_SPRITESHEET_3D_TILE, constant.LOAD_CONFIG_SPRITESHEET_3D_TILE);
 	}
 
 	create() {
