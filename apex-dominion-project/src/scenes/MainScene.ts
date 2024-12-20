@@ -20,15 +20,17 @@ export default class MainScene extends Phaser.Scene {
         // this.cameraDragController.setupMouseEvents();
         this.hexagonMap.drawMap();
 
+        this.cameras.main.zoom = 0.001;
         this.cameras.main.centerOn(400, 200);
-
-        console.log("Create()");
-        this.input.keyboard?.on('keydown-D', () => {
-            this.hexagonMap.increaseMapSize({x: 1, y: 0});
+        this.cameras.main.zoomTo(1.5, 1000, "Expo", true, (camera, progress, x, y) => {
+            if (progress == 1)
+            {
+                this.hexagonMap.floatTiles();
+            }
         });
+        this.cameras.main.shake(800, 0.01, true);
 
-        this.fpsText = this.add.text(10, 10, '', { font: '30px Arial', color: '#ffffff' });
-        this.fpsText.setScrollFactor(0);
+        this.hexagonMap.drawMap();
     }
 
     /**
@@ -36,7 +38,6 @@ export default class MainScene extends Phaser.Scene {
      */
     public update(): void {
         // this.cameraDragController.updateCameraMovement();
-        this.tweens.update();
-        this.fpsText?.setText('FPS: ' + Math.floor(this.game.loop.actualFps));
+        // this.tweens.update();
     }
 }

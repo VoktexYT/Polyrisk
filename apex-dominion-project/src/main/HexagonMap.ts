@@ -11,6 +11,7 @@ export default class HexagonMap {
     private readonly height: number = 10;
 
     private map: Array<Array<number>> = generateNoiseMap(this.width, this.height);
+    public all_hex_map: Array<Array<HexagonTile>> = [];
 
     constructor(private readonly scene: Phaser.Scene) {}
 
@@ -27,9 +28,27 @@ export default class HexagonMap {
 
     increaseMapSize(dirr: constant.position2D): void {
         if (dirr.x > 0) {
-            console.log("HEY!")
             this.map = generateNoiseMap(this.width, this.height, 1);
             this.drawMap();
+        }
+    }
+
+    floatTiles(): void {
+        for (let row of this.all_hex_map)
+        {
+            for (let hexTile of row)
+            {
+                switch(hexTile.getProperties.idx)
+                {
+                    case constant.PERCENT_NOISE_TILE['light-sand'][0]:
+                        this.scene.tweens.add({
+                            targets: hexTile.image,
+                            duration: 1000,
+                            
+                        });
+                        break;
+                }
+            }
         }
     }
 
@@ -39,9 +58,9 @@ export default class HexagonMap {
         
         let isOffset = false;
 
-        const hexagonTileGroup = this.scene.add.group();
-
         for (let y=0; y<this.height; y++) {
+            let rowHex: Array<HexagonTile> = [];
+
             for (let x=0; x<this.width; x++) {
                 const hexagonTile: HexagonTile = new HexagonTile(this.scene);
 
@@ -60,62 +79,21 @@ export default class HexagonMap {
 
                 const noiseValue = this.map[y][x];
 
-                if (noiseValue < 0.000001) {
-                    hexagonTile.drawTile(position, 0);                
-                }
+                for (let key of Object.keys(constant.PERCENT_NOISE_TILE) as Array<keyof typeof constant.PERCENT_NOISE_TILE>)
+                {
+                    let [idx, noise] = constant.PERCENT_NOISE_TILE[key];
 
-                else if (noiseValue < 0.1) {
-                    hexagonTile.drawTile(position, 1);                
-                }
-
-                else if (noiseValue < 0.2) {
-                    hexagonTile.drawTile(position, 2);
-                }
-
-                else if (noiseValue < 0.3) {
-                    hexagonTile.drawTile(position, 3);   
-                    hexagonTile.moveY(-10);            
-                }
-
-                else if (noiseValue < 0.4) {
-                    hexagonTile.drawTile(position, 4);  
-                    hexagonTile.moveY(-10);           
-                }
-
-                else if (noiseValue < 0.5) {
-                    hexagonTile.drawTile(position, 5);
-                    hexagonTile.moveY(-15);
-                }
-
-                else if (noiseValue < 0.6) {
-                    hexagonTile.drawTile(position, 6);
-                    hexagonTile.moveY(-19);
-                }
-
-                else if (noiseValue < 0.7) {
-                    hexagonTile.drawTile(position, 7);
-                    hexagonTile.moveY(-19);
-                }
-
-                else if (noiseValue < 0.8) {
-                    hexagonTile.drawTile(position, 8);
-                    hexagonTile.moveY(-19);
-                }
-
-                else if (noiseValue < 0.9) {
-                    hexagonTile.drawTile(position, 9);
-                    hexagonTile.moveY(-19);
-                }
-
-                else {
-                    hexagonTile.drawTile(position, 10);     
-                    hexagonTile.moveY(-19);      
-                }
-
-                if (hexagonTile.image) {
-                    hexagonTileGroup.add(hexagonTile.image);
+                    if (noiseValue < noise)
+                    {
+                        hexagonTile.drawTile(position, idx);
+                        hexagonTile.setProperties(idx, position, noise);
+                        rowHex.push(hexagonTile);
+                        break;
+                    }
                 }
             }
+
+            this.all_hex_map.push(rowHex);
 
             isOffset = !isOffset;
         }

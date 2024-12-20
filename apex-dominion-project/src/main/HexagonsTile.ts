@@ -10,6 +10,11 @@ export default class HexagonTile {
     public height = 156;
     public readonly scale = 0.5;
     private isActive = false;
+    private properties: {position: constant.position2D, idx: number, noise: number} = {
+        position: {x: 0, y: 0},
+        idx: 0,
+        noise: 0
+    };
 
     constructor(
         private readonly scene: Phaser.Scene) {
@@ -41,6 +46,18 @@ export default class HexagonTile {
                 this.image.clearTint();
             });
         }
+    }
+
+    public setProperties(idx: number, position: constant.position2D, noise: number) {
+        this.properties = {
+            position: position,
+            idx: idx,
+            noise: noise
+        };
+    }
+
+    public get getProperties() {
+        return this.properties;
     }
 
     private clickEvent() {
