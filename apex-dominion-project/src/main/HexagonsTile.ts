@@ -3,26 +3,24 @@ import * as constant from "./Const";
 
 
 
-export default class HexagonTile {
+export default abstract class HexagonTile {
     public image: Phaser.GameObjects.Image | undefined;
-
     public width = 154;
     public height = 156;
     public readonly scale = 0.5;
-    private isActive = false;
-    private properties: {position: constant.position2D, idx: number, noise: number} = {
+
+    protected properties: {position: constant.position2D, idx: number, noise: number} = {
         position: {x: 0, y: 0},
         idx: 0,
         noise: 0
     };
 
-    constructor(
-        private readonly scene: Phaser.Scene) {
-            this.width *= this.scale;
-            this.height *= this.scale;
-        }
+    constructor(protected readonly scene: Phaser.Scene) {
+        this.width *= this.scale;
+        this.height *= this.scale;
+    }
 
-    public drawTile(position: constant.position2D, idx: number) {
+    public draw(position: constant.position2D, idx: number) {
         this.image = this.scene.add.image(
             position.x, position.y, constant.LOAD_KEY_SPRITESHEET_3D_TILE, idx
         );
@@ -33,7 +31,7 @@ export default class HexagonTile {
         this.createEvent();
     }
 
-    private hoverEvent() {
+    protected hoverEvent() {
         if (this.image) {
 
             this.image.on('pointerover', () => {
@@ -60,19 +58,17 @@ export default class HexagonTile {
         return this.properties;
     }
 
-    private clickEvent() {
+    protected abstract callbackOnClickEvent(): void;
+    public readonly abstract TileIdx: Array<number>;
+    public readonly abstract SpritesheetKey: string;
+
+    protected clickEvent() {
         if (this.image) {
             this.image.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
                 if (!this.image) {return;}
 
                 if (pointer.leftButtonDown()) {
-                    this.scene.tweens.add({
-                        targets: this.image,
-                        y: this.image.y + 40,
-                        duration: 50,
-                        yoyo: false,
-                        repeat: 0,
-                    });
+                    this.callbackOnClickEvent();
                 }
             });
         }
@@ -84,7 +80,7 @@ export default class HexagonTile {
         }
     }
 
-    private createEvent() {
+    protected createEvent() {
         this.hoverEvent();
         this.clickEvent();
     }

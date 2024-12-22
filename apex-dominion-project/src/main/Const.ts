@@ -21,16 +21,31 @@ export const PERCENT_NOISE_TILE = {
 }
 
 
-export const LOAD_KEY_SPRITESHEET_3D_TILE: string = "3d-tiles";
-export const LOAD_SRC_SPRITESHEET_3D_TILE: string = require('@/assets/Normal3Dtiles.png');
-export const LOAD_CONFIG_SPRITESHEET_3D_TILE: Phaser.Types.Loader.FileTypes.ImageFrameConfig = {
-    frameWidth: 154,
-    frameHeight: 156,
-};
+type SpritesheetKey = "3d-tiles" | "border-tiles";
 
-export const LOAD_KEY_SPRITESHEET_BORDER_TILE: string = "border-tiles";
-export const LOAD_SRC_SPRITESHEET_BORDER_TILE: string = require('@/assets/borderTiles.png');
-export const LOAD_CONFIG_SPRITESHEET_BORDER_TILE: Phaser.Types.Loader.FileTypes.ImageFrameConfig = {
-    frameWidth: 156,
-    frameHeight: 126,
-};
+type SpritesheetConfig = {
+    key: SpritesheetKey,
+    src: any,
+    config: Phaser.Types.Loader.FileTypes.ImageFrameConfig
+}
+
+export const LOAD_SPRITESHEET_TILES: SpritesheetConfig[] = [
+    {
+        key: "3d-tiles",
+        src: require('@/assets/Normal3Dtiles.png'),
+        config: {
+            frameWidth: 154,
+            frameHeight: 156
+        }
+    },
+
+    {
+        key: "border-tiles",
+        src: require('@/assets/borderTiles.png'),
+        config: {
+            frameWidth: 156,
+            frameHeight: 126
+        }
+    }
+];
+
