@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 
 import * as constant from '@/main/Const'
 
-import { TileInstance } from './tiles/InterfaceTiles';
-import { InterfaceTiles } from './tiles/InterfaceTiles';
+import { TileInstance } from './tiles/TileManager';
+import { TileManager } from './tiles/TileManager';
 import { generateNoiseMap } from './ProceduralMap';
 
 

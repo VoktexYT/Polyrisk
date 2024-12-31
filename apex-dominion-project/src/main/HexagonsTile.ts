@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import * as constant from "./Const";
+import { LOAD_SPRITESHEET_TILES, position2D, SpritesheetConfig, SpritesheetKey } from "./Const";
 
 
 
@@ -9,20 +9,19 @@ export default abstract class HexagonTile {
     public height = 156;
     public readonly scale = 0.5;
 
-    protected properties: {position: constant.position2D, idx: number, noise: number} = {
-        position: {x: 0, y: 0},
-        idx: 0,
-        noise: 0
-    };
-
-    constructor(protected readonly scene: Phaser.Scene) {
+    constructor(
+        protected readonly scene: Phaser.Scene, 
+        protected readonly spritesheetKey: SpritesheetKey,
+        protected readonly tileName: string
+    ) {
         this.width *= this.scale;
         this.height *= this.scale;
     }
 
-    public draw(position: constant.position2D, idx: number) {
+    public draw(position: position2D, idx: number) {
+        const spritesheetConfig: SpritesheetConfig = 
         this.image = this.scene.add.image(
-            position.x, position.y, constant.LOAD_KEY_SPRITESHEET_3D_TILE, idx
+            position.x, position.y, this.spritesheetKey, idx
         );
 
         this.image.setScale(this.scale);
@@ -33,7 +32,6 @@ export default abstract class HexagonTile {
 
     protected hoverEvent() {
         if (this.image) {
-
             this.image.on('pointerover', () => {
                 if (!this.image) {return;}
                 this.image.setTint(0xAAAAAA);
@@ -46,21 +44,7 @@ export default abstract class HexagonTile {
         }
     }
 
-    public setProperties(idx: number, position: constant.position2D, noise: number) {
-        this.properties = {
-            position: position,
-            idx: idx,
-            noise: noise
-        };
-    }
-
-    public get getProperties() {
-        return this.properties;
-    }
-
     protected abstract callbackOnClickEvent(): void;
-    public readonly abstract TileIdx: Array<number>;
-    public readonly abstract SpritesheetKey: string;
 
     protected clickEvent() {
         if (this.image) {
