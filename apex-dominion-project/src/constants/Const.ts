@@ -13,6 +13,7 @@ export const enum TileType {
 };
 
 export const SEED: string = "1";
+export const MAX_HEX_COLOR = "FFFFFF";
 
 export const PERCENT_NOISE_TILE = {
     "water":      [0, 0.15],
@@ -40,7 +41,7 @@ export type SpritesheetConfig = {
 export const LOAD_SPRITESHEET_TILES: SpritesheetConfig[] = [
     {
         key: "3d-tiles",
-        src: require('@/components/assets/3d-tiles.png'),
+        src: require('@/assets/3d-tiles.png'),
         config: {
             frameWidth: 154,
             frameHeight: 156

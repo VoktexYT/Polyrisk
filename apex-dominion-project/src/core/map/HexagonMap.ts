@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
 
-import * as constant from '@/main/Const'
+import * as constant from '@/constants/Const'
 
-import { TileInstance } from './tiles/TileManager';
-import { TileManager } from './tiles/TileManager';
+// import { TileInstance } from './tiles-last/TileManager';
+import { TileManager } from '@/core/tiles-last/TileManager';
 import { generateNoiseMap } from './ProceduralMap';
-import HexagonTile from "@/main/HexagonsTile";
+import HexagonTile from "@/core/tiles/HexagonsTile";
 
 
 export default class HexagonMap {

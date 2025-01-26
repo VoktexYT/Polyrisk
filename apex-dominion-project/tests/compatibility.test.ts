@@ -1,7 +1,7 @@
 // JSON files
-import tileData from "../../data/tile-data.json";
-import tileSrc from "../../data/tile-src.json";
-import * as jsonTypes from "../../data/types";
+import tileData from "@/core/data/tile-data.json";
+import tileSrc from "@/core/data/tile-src.json";
+import * as jsonTypes from "@/core/data/types";
 
 // JSON Structures
 const TILE_DATA_JSON: jsonTypes.TileDataJson = tileData;

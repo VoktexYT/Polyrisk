@@ -1,6 +1,6 @@
 import { createNoise2D } from "simplex-noise";
 import seedrandom from "seedrandom";
-import * as constant from '@/main/Const';
+import * as constant from '@/constants/Const';
 
 
 const rgn = seedrandom(constant.SEED);

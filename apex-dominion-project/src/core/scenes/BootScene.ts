@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 
-import * as constant from '@/main/Const'
+import * as constant from '@/constants/Const'
 
 export default class BootScene extends Phaser.Scene {
 	constructor() {

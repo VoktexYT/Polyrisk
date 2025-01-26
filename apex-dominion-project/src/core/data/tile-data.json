@@ -1,4 +1,17 @@
 {
+  "tiles": [
+    {
+      "noiseRange": [0, 0.2],
+      "name": "grass",
+      "src": {
+        "key": "3d-tiles",
+        "index": 0
+      },
+      "type": "ground"
+    }
+  ],
+
+
   "water": {
     "type": "Fluid",
     "key": "3d-tiles",

@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { LOAD_SPRITESHEET_TILES, position2D, SpritesheetConfig, SpritesheetKey } from "./Const";
+import { LOAD_SPRITESHEET_TILES, position2D, SpritesheetConfig, SpritesheetKey } from "../../constants/Const";
 
 
 

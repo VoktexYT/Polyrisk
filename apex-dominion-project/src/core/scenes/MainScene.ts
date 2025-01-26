@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
-import HexagonMap from '@/main/HexagonMap';
-import CameraDragController from '@/main/CameraDragController';
+import HexagonMap from '@/core/map/HexagonMap';
+import CameraDragController from '@/core/utils/CameraDragController';
 
 
 export default class MainScene extends Phaser.Scene {

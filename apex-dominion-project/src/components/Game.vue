@@ -10,8 +10,8 @@
 
     import Phaser from 'phaser';
 
-    import BootScene from '@/scenes/BootScene';
-    import MainScene from '@/scenes/MainScene';
+    import BootScene from '@/core/scenes/BootScene';
+    import MainScene from '@/core/scenes/MainScene';
 
     @Options({
         components: {

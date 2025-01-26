@@ -1,8 +1,11 @@
-import * as constant from "@/main/Const"
+import * as constant from "@/constants/Const"
 
 import Phaser from "phaser";
 
-
+/*
+* Class CameraDragController
+* This class is used to move the camera in phaser scene with velocity effect.
+* */
 export default class CameraDragController {
     private isRightClickActive: boolean = false;
 
@@ -72,8 +75,10 @@ export default class CameraDragController {
             this.cameraVelocity.x *= this.slidePower;
             this.cameraVelocity.y *= this.slidePower;
 
-            if (Math.abs(this.cameraVelocity.x) <= this.minVelocity) this.cameraVelocity.x = 0;
-            if (Math.abs(this.cameraVelocity.y) <= this.minVelocity) this.cameraVelocity.y = 0;
+            if (Math.abs(this.cameraVelocity.x) <= this.minVelocity)
+                this.cameraVelocity.x = 0;
+            if (Math.abs(this.cameraVelocity.y) <= this.minVelocity)
+                this.cameraVelocity.y = 0;
 
             this.scene.cameras.main.scrollX -= this.cameraVelocity.x;
             this.scene.cameras.main.scrollY -= this.cameraVelocity.y;
