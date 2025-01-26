@@ -19,7 +19,6 @@ export default abstract class HexagonTile {
     }
 
     public draw(position: position2D, idx: number) {
-        const spritesheetConfig: SpritesheetConfig = 
         this.image = this.scene.add.image(
             position.x, position.y, this.spritesheetKey, idx
         );
@@ -58,6 +57,9 @@ export default abstract class HexagonTile {
         }
     }
 
+    /*
+    * This function is used to move the tile image on Y axis
+    * */
     public moveY(newY: number) {
         if (this.image) {
             this.image.y += newY;

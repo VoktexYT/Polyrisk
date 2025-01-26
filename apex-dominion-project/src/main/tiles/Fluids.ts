@@ -7,7 +7,7 @@ export default class HexagonFluidTile extends HexagonTile
 {
     constructor(protected readonly scene: Phaser.Scene) 
     {
-        super(scene);
+        super(scene, "3d-tiles", "fluid-tile");
     }
 
     protected callbackOnClickEvent(): void {

@@ -5,6 +5,7 @@ import * as constant from '@/main/Const'
 import { TileInstance } from './tiles/TileManager';
 import { TileManager } from './tiles/TileManager';
 import { generateNoiseMap } from './ProceduralMap';
+import HexagonTile from "@/main/HexagonsTile";
 
 
 export default class HexagonMap {
@@ -59,16 +60,16 @@ export default class HexagonMap {
         
         let isOffset = false;
 
-        const hexagonTile: HexagonTile = new HexagonTile(this.scene);
+        // const hexagonTile: HexagonTile = new HexagonTile(this.scene);
 
         let position: constant.position2D = { x: 0, y: 0 };
 
-        if (isOffset)
-            position.x += (hexagonTile.width / 2 + (hexagonTile.width + OFFSET_X) * x);
-        else
-            position.x += (hexagonTile.width + OFFSET_X) * x - OFFSET_X / 2;
+        // if (isOffset)
+            // position.x += (hexagonTile.width / 2 + (hexagonTile.width + OFFSET_X) * x);
+        // else
+            // position.x += (hexagonTile.width + OFFSET_X) * x - OFFSET_X / 2;
 
-        position.y += ((hexagonTile.height + OFFSET_Y) * y);
+        // position.y += ((hexagonTile.height + OFFSET_Y) * y);
 
         for (let y=0; y<this.height; y++) {
             let rowHex: Array<any> = [];
@@ -82,9 +83,9 @@ export default class HexagonMap {
     
                         if (noiseValue < noise)
                         {
-                            hexagonTile.drawTile(position, idx);
-                            hexagonTile.setProperties(idx, position, noise);
-                            rowHex.push(hexagonTile);
+                            // hexagonTile.drawTile(position, idx);
+                            // hexagonTile.setProperties(idx, position, noise);
+                            // rowHex.push(hexagonTile);
                             break;
                         }
                     }

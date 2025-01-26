@@ -22,7 +22,7 @@ export type TileInstance<T extends TileType> = InstanceType<typeof TileClasses[T
 export class TileManager<T extends TileType> {
     constructor(private readonly scene: Phaser.Scene, private readonly noise: number) {}
 
-    public createInstance(noise: number): TileInstance<T> {
+    // public createInstance(noise: number): TileInstance<T> {
         
-    }
+    // }
 }

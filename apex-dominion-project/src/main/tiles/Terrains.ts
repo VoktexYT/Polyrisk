@@ -7,7 +7,7 @@ export default class HexagonTerrainTile extends HexagonTile
 {
     constructor(protected readonly scene: Phaser.Scene) 
     {
-        super(scene);
+        super(scene, "3d-tiles", "terrain-tile");
     }
 
     protected callbackOnClickEvent(): void {

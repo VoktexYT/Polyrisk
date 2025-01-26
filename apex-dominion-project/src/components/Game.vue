@@ -19,7 +19,8 @@
         },
     })
   
-    export default class Game extends Vue {
+    export default class Game extends Vue
+    {
         private game!: Phaser.Game;
         width: string = "";
         height: string = "";
@@ -60,7 +61,8 @@
             });
         }
 
-        private destroyGame() {
+        private destroyGame()
+        {
             if (this.game) {
                 this.game.destroy(true);
             }

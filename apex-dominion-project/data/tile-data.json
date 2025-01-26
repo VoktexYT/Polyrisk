@@ -1,0 +1,67 @@
+{
+  "water": {
+    "type": "Fluid",
+    "key": "3d-tiles",
+    "index": 0
+  },
+
+  "deep-water": {
+    "type": "Fluid",
+    "key": "3d-tiles",
+    "index": 1
+  },
+
+  "snow": {
+    "type": "Normal",
+    "key": "3d-tiles",
+    "index": 2
+  },
+
+  "light-sand": {
+    "type": "normal",
+    "key": "3d-tiles",
+    "index": 3
+  },
+
+  "sand": {
+    "type": "normal",
+    "key": "3d-tiles",
+    "index": 4
+  },
+
+  "dark-sand": {
+    "type": "normal",
+    "key": "3d-tiles",
+    "index": 5
+  },
+
+  "grass": {
+    "type": "normal",
+    "key": "3d-tiles",
+    "index": 6
+  },
+
+  "dark-grass": {
+    "type": "normal",
+    "key": "3d-tiles",
+    "index": 7
+  },
+
+  "light-stone": {
+    "type": "normal",
+    "key": "3d-tiles",
+    "index": 8
+  },
+
+  "stone": {
+    "type": "Collide",
+    "key": "3d-tiles",
+    "index": 9
+  },
+
+  "dark-stone": {
+    "type": "Collide",
+    "key": "3d-tiles",
+    "index": 10
+  }
+}

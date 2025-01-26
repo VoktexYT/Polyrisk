@@ -7,7 +7,7 @@ export default class HexagonCollideTile extends HexagonTile
 {
     constructor(protected readonly scene: Phaser.Scene) 
     {
-        super(scene);
+        super(scene, "3d-tiles", "collide-tile");
     }
 
     protected callbackOnClickEvent(): void {

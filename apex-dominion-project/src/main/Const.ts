@@ -40,7 +40,7 @@ export type SpritesheetConfig = {
 export const LOAD_SPRITESHEET_TILES: SpritesheetConfig[] = [
     {
         key: "3d-tiles",
-        src: require('@/assets/Normal3Dtiles.png'),
+        src: require('@/components/assets/3d-tiles.png'),
         config: {
             frameWidth: 154,
             frameHeight: 156
