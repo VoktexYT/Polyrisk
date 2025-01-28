@@ -13,8 +13,8 @@ import {TileDataProperties, TileSrcProperties} from "@/core/data/types";
 * @param noiseRange The noise in procedural 2D map
 * @return The tile name (ex: grass for noise range [0.1, 0.2])
 * */
-export function getTileNameByNoiseRange(noiseRange: [number, number]): object {
-    let objectFound: object = {};
+export function getTileNameByNoiseRange(noiseRange: [number, number]): TileDataProperties | null {
+    let objectFound: TileDataProperties | null = null;
 
     tileDataJson.tiles.forEach((tileProperties: TileDataProperties): void => {
         let isSameNoiseRange: boolean = (

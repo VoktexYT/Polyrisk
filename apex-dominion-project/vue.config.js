@@ -1,9 +1,14 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
 	transpileDependencies: true,
-		configureWebpack: {
+	configureWebpack: {
 		cache: {
 			type: 'filesystem', // Use file system caching for faster rebuilds
 		},
+		resolve: {
+			fallback: {
+				path: require.resolve('path-browserify'),
+			}
+		}
 	},
 })

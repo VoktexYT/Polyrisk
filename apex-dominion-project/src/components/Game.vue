@@ -11,7 +11,7 @@
     import Phaser from 'phaser';
 
     import LoadScene from '@/core/scenes/load-scene';
-    import MainScene from '@/core/scenes/miain-scene';
+    import MainScene from '@/core/scenes/main-scene';
 
     @Options({
         components: {
@@ -54,7 +54,6 @@
             };
 
             this.game = new Phaser.Game(config);
-
             this.game.scale.on('resize', () => {
                 this.width = this.game.canvas.style.width;
                 this.height = this.game.canvas.style.height;

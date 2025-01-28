@@ -2,22 +2,22 @@
 import Phaser from "phaser";
 
 // files
-import { position2D, SpritesheetKey } from "@/constants/const";
+import { position2D } from "@/constants/const";
+import {TileDataProperties} from "@/core/data/types";
 
 /*
 * Class tile
 * This class is used to create generic tile. All tile objects are create from this class
 * */
 export default class Tile {
-    public image: Phaser.GameObjects.Image | undefined;
-    public width = 154;
-    public height = 156;
-    public readonly scale = 0.5;
+    private image: Phaser.GameObjects.Image | undefined;
+    private width = 154;
+    private height = 156;
+    private readonly scale = 0.5;
 
     public constructor(
-        protected readonly scene: Phaser.Scene, 
-        protected readonly spritesheetKey: SpritesheetKey,
-        protected readonly tileName: string
+        private readonly scene: Phaser.Scene,
+        public readonly property: TileDataProperties,
     ) {
         this.width *= this.scale;
         this.height *= this.scale;
@@ -25,7 +25,7 @@ export default class Tile {
 
     public draw(position: position2D, idx: number): void {
         this.image = this.scene.add.image(
-            position.x, position.y, this.spritesheetKey, idx
+            position.x, position.y, this.property.src.key, idx
         );
 
         this.image.setScale(this.scale);

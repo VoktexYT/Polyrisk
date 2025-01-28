@@ -23,10 +23,10 @@ export default class MainScene extends Phaser.Scene {
         this.cameras.main.zoom = 0.001;
         this.cameras.main.centerOn(400, 200);
         this.cameras.main.zoomTo(1.5, 1000, "Expo", true, (camera, progress, x, y) => {
-            if (progress == 1)
-            {
-                this.hexagonMap.floatTiles();
-            }
+            // if (progress == 1)
+            // {
+            //     this.hexagonMap.floatTiles();
+            // }
         });
         this.cameras.main.shake(800, 0.01, true);
 

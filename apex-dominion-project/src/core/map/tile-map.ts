@@ -7,7 +7,7 @@
 
 import Phaser from 'phaser';
 
-import { PERCENT_NOISE_TILE, position2D, size2D } from '@/constants/const'
+import { position2D, size2D } from '@/constants/const'
 
 import { generateNoiseMap } from '@/core/map/map-generator';
 import Tile from "@/core/tiles/tile";
@@ -48,23 +48,23 @@ export default class TileMap {
         }
     }
 
-    public floatTiles(): void {
-        for (let row of this.all_hex_map)
-        {
-            for (let hexTile of row)
-            {
-                switch(hexTile.getProperties.idx)
-                {
-                    case PERCENT_NOISE_TILE['light-sand'][0]:
-                        this.scene.tweens.add({
-                            targets: hexTile.image,
-                            duration: 1000
-                        });
-                        break;
-                }
-            }
-        }
-    }
+    // public floatTiles(): void {
+    //     for (let row of this.all_hex_map)
+    //     {
+    //         for (let hexTile of row)
+    //         {
+    //             switch(hexTile.getProperties.idx)
+    //             {
+    //                 case PERCENT_NOISE_TILE['light-sand'][0]:
+    //                     this.scene.tweens.add({
+    //                         targets: hexTile.image,
+    //                         duration: 1000
+    //                     });
+    //                     break;
+    //             }
+    //         }
+    //     }
+    // }
 
     public drawMap(): void {
         
@@ -90,18 +90,18 @@ export default class TileMap {
             for (let x: number=0; x<this.width; x++) {
                 const noiseValue: number = this.map[y][x];
 
-                for (let key of Object.keys(PERCENT_NOISE_TILE) as Array<keyof typeof PERCENT_NOISE_TILE>)
-                    {
-                        let [idx, noise] = PERCENT_NOISE_TILE[key];
-    
-                        if (noiseValue < noise)
-                        {
-                            // hexagonTile.drawTile(position, idx);
-                            // hexagonTile.setProperties(idx, position, noise);
-                            // rowHex.push(hexagonTile);
-                            break;
-                        }
-                    }
+                // for (let key of Object.keys(PERCENT_NOISE_TILE) as Array<keyof typeof PERCENT_NOISE_TILE>)
+                //     {
+                //         let [idx, noise] = PERCENT_NOISE_TILE[key];
+                //
+                //         if (noiseValue < noise)
+                //         {
+                //             // hexagonTile.drawTile(position, idx);
+                //             // hexagonTile.setProperties(idx, position, noise);
+                //             // rowHex.push(hexagonTile);
+                //             break;
+                //         }
+                //     }
             }
 
             this.all_hex_map.push(rowHex);

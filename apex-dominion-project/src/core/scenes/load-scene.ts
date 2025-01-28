@@ -1,6 +1,8 @@
+// Packages
 import Phaser from 'phaser';
 
-import * as constant from '@/constants/const'
+// Files
+import findImageFilesPath from "@/core/load-assets/find-image-paths";
 
 export default class LoadScene extends Phaser.Scene {
 	constructor() {
@@ -8,13 +10,16 @@ export default class LoadScene extends Phaser.Scene {
 	}
 
 	preload() {
-		constant.LOAD_SPRITESHEET_TILES.forEach(val => {
-			try {
-				this.load.spritesheet(val.key, val.src, val.config);
-			} catch (error) {
-				console.error(`Failed to load spritesheet with key: ${val.key}`, error);
-			}
-		});
+		console.log(
+			findImageFilesPath()
+		);
+		// constant.LOAD_SPRITESHEET_TILES.forEach(val => {
+		// 	try {
+		// 		this.load.spritesheet(val.key, val.src, val.config);
+		// 	} catch (error) {
+		// 		console.error(`Failed to load spritesheet with key: ${val.key}`, error);
+		// 	}
+		// });
 	}
 
 	create() {

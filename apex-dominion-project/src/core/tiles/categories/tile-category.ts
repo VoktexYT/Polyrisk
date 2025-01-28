@@ -1,3 +1,10 @@
-export default class TileCategory {
+import {TileDataProperties} from "@/core/data/types";
 
+export default abstract class TileCategory {
+    constructor(private category: TileDataProperties) {}
+
+    abstract event(callback: () => {}): void;
+    public get getCategory(): TileDataProperties {
+        return this.category;
+    }
 }
