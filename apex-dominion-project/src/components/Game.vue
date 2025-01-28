@@ -10,8 +10,8 @@
 
     import Phaser from 'phaser';
 
-    import BootScene from '@/core/scenes/BootScene';
-    import MainScene from '@/core/scenes/MainScene';
+    import LoadScene from '@/core/scenes/load-scene';
+    import MainScene from '@/core/scenes/miain-scene';
 
     @Options({
         components: {
@@ -39,7 +39,7 @@
                 width: 1920,
                 height: 1080,
                 parent: this.$refs.gameContainer as HTMLElement,
-                scene: [BootScene, MainScene],
+                scene: [LoadScene, MainScene],
                 scale: {
                     mode: Phaser.Scale.FIT
                 },

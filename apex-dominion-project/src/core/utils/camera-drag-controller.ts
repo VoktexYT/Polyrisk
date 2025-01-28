@@ -1,4 +1,4 @@
-import * as constant from "@/constants/Const"
+import { position2D } from "@/constants/const"
 
 import Phaser from "phaser";
 
@@ -12,10 +12,10 @@ export default class CameraDragController {
     private isMouseMoving: boolean = false;
     private isCameraMoving: boolean = false;
 
-    private currentMousePosition: constant.position2D = { x: 0, y: 0 };
-    private previousMousePosition: constant.position2D = this.currentMousePosition;
+    private currentMousePosition: position2D = { x: 0, y: 0 };
+    private previousMousePosition: position2D = this.currentMousePosition;
 
-    private cameraVelocity: constant.position2D = { x: 0, y: 0 };
+    private cameraVelocity: position2D = { x: 0, y: 0 };
 
     private readonly minVelocity = 0.1;
     private readonly slidePower: number = 0.95; // 1 is infinite slide, 0 isn't slide
@@ -47,7 +47,7 @@ export default class CameraDragController {
      * Updates the camera velocity accordingly.
      * @returns The difference in mouse position as a `position2D` object.
      */
-    private getMouseMovementDelta(): constant.position2D {
+    private getMouseMovementDelta(): position2D {
         const deltaX = this.currentMousePosition.x - this.previousMousePosition.x;
         const deltaY = this.currentMousePosition.y - this.previousMousePosition.y;
 

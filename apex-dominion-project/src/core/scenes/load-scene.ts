@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 
-import * as constant from '@/constants/Const'
+import * as constant from '@/constants/const'
 
-export default class BootScene extends Phaser.Scene {
+export default class LoadScene extends Phaser.Scene {
 	constructor() {
-		super({ key: 'BootScene' });
+		super({ key: 'LoadScene' });
 	}
 
 	preload() {

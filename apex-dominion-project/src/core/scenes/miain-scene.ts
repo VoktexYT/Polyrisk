@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
 
-import HexagonMap from '@/core/map/HexagonMap';
-import CameraDragController from '@/core/utils/CameraDragController';
+import TileMap from '@/core/map/tile-map';
+import CameraDragController from '@/core/utils/camera-drag-controller';
 
 
 export default class MainScene extends Phaser.Scene {
-    private hexagonMap = new HexagonMap(this);
+    private hexagonMap = new TileMap(this);
     private cameraDragController = new CameraDragController(this);
     private fpsText: Phaser.GameObjects.Text | undefined;
 

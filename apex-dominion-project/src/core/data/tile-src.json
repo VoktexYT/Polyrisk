@@ -1,7 +1,48 @@
 {
-  "3d-tiles": "apex-dominion-project/src/assets/3d-tiles.png",
-  "mountain-tiles": "apex-dominion-project/src/assets/mountain-tiles.png",
-  "2d-tiles": "apex-dominion-project/src/assets/2d-tiles.png",
-  "border-tiles": "apex-dominion-project/src/assets/border-tiles.png",
-  "decoration": "apex-dominion-project/src/assets/decorations.png"
+  "sources": [
+    {
+      "key": "3d-tiles",
+      "config": {
+        "frameWidth": 154,
+        "frameHeight": 156
+      },
+      "src": "apex-dominion-project/src/assets/3d-tiles.png"
+    },
+
+    {
+      "key": "mountain-tiles",
+      "config": {
+        "frameWidth": 156,
+        "frameHeight": 146
+      },
+      "src": "apex-dominion-project/src/assets/mountain-tiles.png"
+    },
+
+    {
+      "key": "2d-tiles",
+      "config": {
+        "frameWidth": 154,
+        "frameHeight": 128
+      },
+      "src": "apex-dominion-project/src/assets/2d-tiles.png"
+    },
+
+    {
+      "key": "border-tiles",
+      "config": {
+        "frameWidth": 156,
+        "frameHeight": 126
+      },
+      "src": "apex-dominion-project/src/assets/border-tiles.png"
+    },
+
+    {
+      "key": "decoration",
+      "config": {
+        "frameWidth": 154,
+        "frameHeight": 188
+      },
+      "src": "apex-dominion-project/src/assets/decorations.png"
+    }
+  ]
 }

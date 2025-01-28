@@ -5,12 +5,12 @@
 
 <script lang="ts">
   import { Options, Vue } from 'vue-class-component';
-  import Game from '@/components/Game.vue';
+  import MainScene from '@/components/Game.vue';
   import Interface from '@/components/Interface.vue';
 
   @Options({
     components: {
-      Game,
+      MainScene
     },
   })
 

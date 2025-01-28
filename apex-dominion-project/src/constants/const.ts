@@ -1,19 +1,18 @@
 import Phaser from "phaser";
 
-
+// 2D vector data
 export type position2D = {x: number, y: number};
 export type size2D = {width: number, height: number};
 
+//
 export const enum TileType {
     Fluid = "Fluid",
-    Ressource = "Ressource",
-    Structure = "Structure",
     Terrain = "Terrain",
     Collide = "Collide"
 };
 
 export const SEED: string = "1";
-export const MAX_HEX_COLOR = "FFFFFF";
+export const MAX_HEX_COLOR: string = "FFFFFF";
 
 export const PERCENT_NOISE_TILE = {
     "water":      [0, 0.15],

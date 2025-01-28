@@ -1,15 +1,20 @@
+// packages
 import Phaser from "phaser";
-import { LOAD_SPRITESHEET_TILES, position2D, SpritesheetConfig, SpritesheetKey } from "../../constants/Const";
 
+// files
+import { position2D, SpritesheetKey } from "@/constants/const";
 
-
-export default abstract class HexagonTile {
+/*
+* Class tile
+* This class is used to create generic tile. All tile objects are create from this class
+* */
+export default class Tile {
     public image: Phaser.GameObjects.Image | undefined;
     public width = 154;
     public height = 156;
     public readonly scale = 0.5;
 
-    constructor(
+    public constructor(
         protected readonly scene: Phaser.Scene, 
         protected readonly spritesheetKey: SpritesheetKey,
         protected readonly tileName: string
@@ -18,18 +23,16 @@ export default abstract class HexagonTile {
         this.height *= this.scale;
     }
 
-    public draw(position: position2D, idx: number) {
+    public draw(position: position2D, idx: number): void {
         this.image = this.scene.add.image(
             position.x, position.y, this.spritesheetKey, idx
         );
 
         this.image.setScale(this.scale);
         this.image.setInteractive();
-
-        this.createEvent();
     }
 
-    protected hoverEvent() {
+    public hoverEvent(): void {
         if (this.image) {
             this.image.on('pointerover', () => {
                 if (!this.image) {return;}
@@ -43,15 +46,13 @@ export default abstract class HexagonTile {
         }
     }
 
-    protected abstract callbackOnClickEvent(): void;
-
-    protected clickEvent() {
+    public clickEvent(callback: () => {}): void {
         if (this.image) {
             this.image.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
-                if (!this.image) {return;}
+                if (!this.image) return;
 
                 if (pointer.leftButtonDown()) {
-                    this.callbackOnClickEvent();
+                    callback();
                 }
             });
         }
@@ -60,15 +61,10 @@ export default abstract class HexagonTile {
     /*
     * This function is used to move the tile image on Y axis
     * */
-    public moveY(newY: number) {
+    public moveY(newY: number): void {
         if (this.image) {
             this.image.y += newY;
         }
-    }
-
-    protected createEvent() {
-        this.hoverEvent();
-        this.clickEvent();
     }
 }
 

@@ -1,48 +1,61 @@
+/*
+*
+* This file is used to create TileMap with Noise2D map
+* #fifth step in map creation
+*
+* */
+
 import Phaser from 'phaser';
 
-import * as constant from '@/constants/Const'
+import { PERCENT_NOISE_TILE, position2D, size2D } from '@/constants/const'
 
-// import { TileInstance } from './tiles-last/TileManager';
-import { TileManager } from '@/core/tiles-last/TileManager';
-import { generateNoiseMap } from './ProceduralMap';
-import HexagonTile from "@/core/tiles/HexagonsTile";
+import { generateNoiseMap } from '@/core/map/map-generator';
+import Tile from "@/core/tiles/tile";
 
 
-export default class HexagonMap {
+export default class TileMap {
     private readonly width: number = 10;
     private readonly height: number = 10;
 
-    private map: Array<Array<number>> = generateNoiseMap(this.width, this.height);
+    private map: Array<Array<number>> = generateNoiseMap({
+        width: this.width,
+        height: this.height
+    });
+
     public all_hex_map: Array<Array<any>> = [];
 
     constructor(private readonly scene: Phaser.Scene) {}
 
-    get getMapSize(): constant.size2D {
+    public get getMapSize(): size2D {
         return {
             width: this.width,
             height: this.height
         };
     }
 
-    get getMapArray(): Array<Array<number>> {
+    public get getMapArray(): Array<Array<number>> {
         return this.map;
     }
 
-    increaseMapSize(dirr: constant.position2D): void {
-        if (dirr.x > 0) {
-            this.map = generateNoiseMap(this.width, this.height, 1);
+    public increaseMapSize(dirrection: position2D): void {
+        if (dirrection.x > 0) {
+            this.map = generateNoiseMap({
+                width: this.width,
+                height: this.height
+            }, 1);
+
             this.drawMap();
         }
     }
 
-    floatTiles(): void {
+    public floatTiles(): void {
         for (let row of this.all_hex_map)
         {
             for (let hexTile of row)
             {
                 switch(hexTile.getProperties.idx)
                 {
-                    case constant.PERCENT_NOISE_TILE['light-sand'][0]:
+                    case PERCENT_NOISE_TILE['light-sand'][0]:
                         this.scene.tweens.add({
                             targets: hexTile.image,
                             duration: 1000
@@ -53,16 +66,16 @@ export default class HexagonMap {
         }
     }
 
-    drawMap(): void {
+    public drawMap(): void {
         
         const OFFSET_X = 0;
         const OFFSET_Y = -30;
         
         let isOffset = false;
 
-        // const hexagonTile: HexagonTile = new HexagonTile(this.scene);
+        // const hexagonTile: Tile = new Tile(this.scene);
 
-        let position: constant.position2D = { x: 0, y: 0 };
+        let position: position2D = { x: 0, y: 0 };
 
         // if (isOffset)
             // position.x += (hexagonTile.width / 2 + (hexagonTile.width + OFFSET_X) * x);
@@ -71,15 +84,15 @@ export default class HexagonMap {
 
         // position.y += ((hexagonTile.height + OFFSET_Y) * y);
 
-        for (let y=0; y<this.height; y++) {
+        for (let y: number=0; y<this.height; y++) {
             let rowHex: Array<any> = [];
 
-            for (let x=0; x<this.width; x++) {
-                const noiseValue = this.map[y][x];
+            for (let x: number=0; x<this.width; x++) {
+                const noiseValue: number = this.map[y][x];
 
-                for (let key of Object.keys(constant.PERCENT_NOISE_TILE) as Array<keyof typeof constant.PERCENT_NOISE_TILE>)
+                for (let key of Object.keys(PERCENT_NOISE_TILE) as Array<keyof typeof PERCENT_NOISE_TILE>)
                     {
-                        let [idx, noise] = constant.PERCENT_NOISE_TILE[key];
+                        let [idx, noise] = PERCENT_NOISE_TILE[key];
     
                         if (noiseValue < noise)
                         {
