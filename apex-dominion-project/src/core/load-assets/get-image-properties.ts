@@ -8,7 +8,7 @@ import {TileSrcProperties} from "@/core/data/types";
 /*
 * This function is used to get property in tile-src.json with a key
 * */
-function getImagePropertyByKeySrc(keySrc: string): TileSrcProperties | null {
+export function getImagePropertyByKeySrc(keySrc: string): TileSrcProperties | null {
     let sourcePropertiesFound: TileSrcProperties | null = null;
 
     tileSrcJson.sources.forEach((source: TileSrcProperties) => {

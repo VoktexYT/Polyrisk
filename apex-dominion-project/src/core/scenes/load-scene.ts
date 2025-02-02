@@ -2,7 +2,8 @@
 import Phaser from 'phaser';
 
 // Files
-import findImageFilesPath from "@/core/load-assets/find-image-paths";
+import {getImagePropertyByKeySrc} from "@/core/load-assets/get-image-properties";
+
 
 export default class LoadScene extends Phaser.Scene {
 	constructor() {
@@ -11,7 +12,7 @@ export default class LoadScene extends Phaser.Scene {
 
 	preload() {
 		console.log(
-			findImageFilesPath()
+			getImagePropertyByKeySrc("3d-tiles")
 		);
 		// constant.LOAD_SPRITESHEET_TILES.forEach(val => {
 		// 	try {

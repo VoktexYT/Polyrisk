@@ -11,7 +11,7 @@
     import Phaser from 'phaser';
 
     import LoadScene from '@/core/scenes/load-scene';
-    import MainScene from '@/core/scenes/main-scene';
+    import MainScene from '@/core/scenes/game.scene';
 
     @Options({
         components: {
