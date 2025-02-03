@@ -10,8 +10,8 @@
 
     import Phaser from 'phaser';
 
-    import LoadScene from '@/core/scenes/load-scene';
-    import MainScene from '@/core/scenes/game.scene';
+    import LoadScene from '../core/scenes/loads/sandbox-load-scene';
+    import MainScene from '../core/scenes/games/sandbox-game-scene';
 
     @Options({
         components: {

@@ -1,4 +1,4 @@
-import { position2D } from "@/constants/const"
+import { position2D } from "../../constants/const"
 
 import Phaser from "phaser";
 

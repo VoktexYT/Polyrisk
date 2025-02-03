@@ -4,15 +4,15 @@
 * #Fourth step in map creation
 *
 * */
-import Tile from "@/core/tiles/tile";
+import Tile from "../tiles/tile";
 
 // categories
-import Fluid from "@/core/tiles/categories/fluid";
-import Ground from "@/core/tiles/categories/ground";
-import Collide from "@/core/tiles/categories/collide";
-import TileCategory from "@/core/tiles/categories/tile-category";
+import Fluid from "../tiles/categories/fluid";
+import Ground from "../tiles/categories/ground";
+import Collide from "../tiles/categories/collide";
+import TileCategory from "../tiles/categories/tile-category";
 
-import {FLUID_CATEGORY, GROUND_CATEGORY, COLLIDE_CATEGORY} from "@/constants/tiles";
+import {FLUID_CATEGORY, GROUND_CATEGORY, COLLIDE_CATEGORY} from "../../constants/tiles";
 
 class TileFactory {
     public constructor(private tile: Tile) {}

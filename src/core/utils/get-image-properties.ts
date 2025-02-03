@@ -1,8 +1,8 @@
 /*
 * The code in this file is used to get image properties
 * */
-import tileSrcJson from "@/core/data/tile-src.json";
-import {TileSrcProperties} from "@/core/data/types";
+import tileSrcJson from "../data/tile-src.json";
+import {TileSrcProperties} from "../data/types";
 
 
 /*

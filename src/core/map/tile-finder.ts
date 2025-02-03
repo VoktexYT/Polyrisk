@@ -4,9 +4,9 @@
 * #Second and Third step in map creation
 *
 * */
-import tileDataJson from "@/core/data/tile-data.json";
-import tileSrcJson from "@/core/data/tile-src.json";
-import {TileDataProperties, TileSrcProperties} from "@/core/data/types";
+import tileDataJson from "../data/tile-data.json";
+import tileSrcJson from "../data/tile-src.json";
+import {TileDataProperties, TileSrcProperties} from "../data/types";
 
 /*
 * This function is used to return the tile name using the noise range

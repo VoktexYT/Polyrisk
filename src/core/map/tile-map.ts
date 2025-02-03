@@ -7,10 +7,9 @@
 
 import Phaser from 'phaser';
 
-import { position2D, size2D } from '@/constants/const'
+import { position2D, size2D } from '../../constants/const'
 
-import { generateNoiseMap } from '@/core/map/map-generator';
-import Tile from "@/core/tiles/tile";
+import { generateNoiseMap } from './map-generator';
 
 
 export default class TileMap {

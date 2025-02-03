@@ -1,4 +1,4 @@
-import {TileDataProperties} from "@/core/data/types";
+import {TileDataProperties} from "../../data/types";
 
 export default abstract class TileCategory {
     constructor(private category: TileDataProperties) {}

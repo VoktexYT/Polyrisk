@@ -1,5 +1,5 @@
-import TileCategory from "@/core/tiles/categories/tile-category";
-import Tile from "@/core/tiles/tile";
+import TileCategory from "./tile-category";
+import Tile from "../tile";
 
 export default class Collide extends TileCategory {
     constructor(public readonly tile: Tile) {

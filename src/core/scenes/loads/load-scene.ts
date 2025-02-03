@@ -2,7 +2,7 @@
 import Phaser from 'phaser';
 
 // Files
-import {getImagePropertyByKeySrc} from "@/core/load-assets/get-image-properties";
+import {getImagePropertyByKeySrc} from "../../utils/get-image-properties";
 
 
 export default class LoadScene extends Phaser.Scene {

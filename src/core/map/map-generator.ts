@@ -10,7 +10,7 @@ import {createNoise2D, NoiseFunction2D} from "simplex-noise";
 import seedrandom from "seedrandom";
 
 // project
-import { size2D, SEED } from '@/constants/const';
+import { size2D, SEED } from '../../constants/const';
 
 /*
 * This function is used to generate procedural 2D map

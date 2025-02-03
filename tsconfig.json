@@ -19,7 +19,7 @@
     ],
     "paths": {
       "@/*": [
-        "src/*"
+        "../src/*"
       ]
     },
     "lib": [
@@ -29,13 +29,13 @@
       "scripthost"
     ]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
+"include": [
+  "src/**/*.ts",
+  "src/**/*.tsx",
+  "src/**/*.vue",
+  "__tests__/**/*.ts",
+  "__tests__/**/*.tsx"
+],
   "exclude": [
     "node_modules"
   ]

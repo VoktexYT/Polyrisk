@@ -2,8 +2,8 @@
 import Phaser from "phaser";
 
 // files
-import { position2D } from "@/constants/const";
-import {TileDataProperties} from "@/core/data/types";
+import { position2D } from "../../constants/const";
+import {TileDataProperties} from "../data/types";
 
 /*
 * Class tile

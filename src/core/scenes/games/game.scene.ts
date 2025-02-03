@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
-import TileMap from '@/core/map/tile-map';
-import CameraDragController from '@/core/utils/camera-drag-controller';
+import TileMap from '../../map/tile-map';
+import CameraDragController from '../../utils/camera-drag-controller';
 
 
 export default class MainScene extends Phaser.Scene {
