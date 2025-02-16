@@ -29,3 +29,23 @@ export type TileSrcProperties = {
 export interface TileSrcJson {
     "sources": TileSrcProperties[]
 };
+
+
+/*
+* Different keywords using in json
+ */
+const KEYWORDS: [{name: string, src: string}] = [
+    {
+        name: "ASSETS",
+        src: "assets"
+    }
+];
+
+export function replaceKeywordSrc(src: string)
+{
+    KEYWORDS.forEach((keyword) => {
+        src = src.replace(`[${keyword.name}]`, keyword.src);
+    });
+
+    return src;
+}

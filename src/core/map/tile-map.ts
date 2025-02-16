@@ -95,7 +95,7 @@ export default class TileMap {
                 //
                 //         if (noiseValue < noise)
                 //         {
-                //             // hexagonTile.drawTile(position, idx);
+                //             hexagonTile.drawTile(position, idx);
                 //             // hexagonTile.setProperties(idx, position, noise);
                 //             // rowHex.push(hexagonTile);
                 //             break;

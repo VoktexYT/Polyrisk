@@ -49,7 +49,8 @@
                 },
                 render: {
                     pixelArt: false,
-                    antialias: true
+                    antialias: true,
+                    premultipliedAlpha: false,
                 }
             };
 

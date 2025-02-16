@@ -6,16 +6,16 @@
         "frameWidth": 154,
         "frameHeight": 156
       },
-      "src": "apex-dominion-project/src/assets/3d-tiles.png"
+      "src": "tiles/3d-tiles.png"
     },
 
     {
-      "key": "mountain-tiles",
+      "key": "tiles/mountain-tiles",
       "config": {
         "frameWidth": 156,
         "frameHeight": 146
       },
-      "src": "apex-dominion-project/src/assets/mountain-tiles.png"
+      "src": "tiles/mountain-tiles.png"
     },
 
     {
@@ -24,7 +24,7 @@
         "frameWidth": 154,
         "frameHeight": 128
       },
-      "src": "apex-dominion-project/src/assets/2d-tiles.png"
+      "src": "tiles/2d-tiles.png"
     },
 
     {
@@ -33,7 +33,7 @@
         "frameWidth": 156,
         "frameHeight": 126
       },
-      "src": "apex-dominion-project/src/assets/border-tiles.png"
+      "src": "tiles/border-tiles.png"
     },
 
     {
@@ -42,7 +42,7 @@
         "frameWidth": 154,
         "frameHeight": 188
       },
-      "src": "apex-dominion-project/src/assets/decorations.png"
+      "src": "tiles/decorations.png"
     }
   ]
 }
