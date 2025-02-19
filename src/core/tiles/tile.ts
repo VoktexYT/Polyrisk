@@ -10,11 +10,14 @@ import {TileDataProperties} from "../data/types";
 * This class is used to create generic tile. All tile objects are create from this class
 * */
 export default class Tile {
-    private image: Phaser.GameObjects.Image | undefined;
+    public image: Phaser.GameObjects.Image | undefined;
     private readonly scale = 0.5;
+    private isSelected: boolean = false;
+
+    public initialPosition: position2D = {x: 0, y: 0};
 
     public constructor(
-        private readonly scene: Phaser.Scene,
+        public readonly scene: Phaser.Scene,
         public readonly property: TileDataProperties,
     ) {}
 
@@ -28,26 +31,71 @@ export default class Tile {
             position.y * this.image.height * this.scale * 0.61 - this.property.offsetY * 8,
         );
 
+        this.initialPosition = {x: this.image.x, y: this.image.y};
+
+
         this.image.setScale(this.scale);
         this.image.setInteractive();
-        this.hoverEvent();
+        // this.clickEvent(() => {
+        //     if (!this.image) return;
+        //     this.isSelected = !this.isSelected;
+        //
+        //     if (this.isSelected) {
+        //         this.image.setTint(0xAAAAAA);
+        //
+        //         this.scene.tweens.add({
+        //             targets: this.image,
+        //             duration: 100,
+        //             y: this.initialPosition.y - 30,
+        //             onComplete: () => {
+        //                 if (!this.image) return;
+        //                 this.image.y = this.initialPosition.y - 30;
+        //
+        //                 this.scene.tweens.add({
+        //                     targets: this.image,
+        //                     duration: 1000,
+        //                     y: this.initialPosition.y - 5,
+        //                     repeat: -1,
+        //                     yoyo: true,
+        //                     ease: Phaser.Math.Easing.Bounce.Out
+        //                 })
+        //             }
+        //         });
+        //     }
+        // });
     }
 
     public hoverEvent(): void {
-        if (this.image) {
-            this.image.on('pointerover', () => {
-                if (!this.image) {return;}
-                this.image.setTint(0xAAAAAA);
-            });
+        if (!this.image) return;
+        this.image.on('pointerover', () => {
+            if (!this.image || this.isSelected) {return;}
+            this.image.setTint(0xAAAAAA);
+            this.scene.input.setDefaultCursor("pointer");
 
-            this.image.on('pointerout', () => {
-                if (!this.image) {return;}
-                this.image.clearTint();
-            });
-        }
+            this.scene.tweens.add({
+                targets: this.image,
+                duration: 100,
+                y: this.initialPosition.y - 10,
+                onComplete: () => {
+                    if (!this.image) return;
+
+                    this.scene.tweens.add({
+                        targets: this.image,
+                        duration: 100,
+                        y: this.initialPosition.y,
+                    })
+                }
+            })
+        });
+
+        this.image.on('pointerout', () => {
+            if (!this.image || this.isSelected) {return;}
+            this.scene.input.setDefaultCursor("default");
+            this.image.clearTint();
+        });
     }
 
-    public clickEvent(callback: () => {}): void {
+    public clickEvent(callback: () => void): void {
         if (this.image) {
             this.image.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
                 if (!this.image) return;

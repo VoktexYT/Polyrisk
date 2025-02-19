@@ -14,19 +14,19 @@ export default class LoadScene extends Phaser.Scene {
     }
 
     preload(): void {
-        console.log("Load Sandbox");
         this.tileSrcJson["sources"].forEach((tileSrc: TileSrcProperties) => {
             this.load.spritesheet(
                 tileSrc.key,
                 tileSrc.src,
                 tileSrc.config
             );
-        })
+        });
+
+        this.load.audio("backgroundMusic", "assets/bgMusic.mp3");
     }
 
     create(): void {
         this.loadingText = this.add.text(100, 100, "", {fontSize: 45});
-        console.log("Create Sandbox");
 
         setTimeout(() => {
             const seed = prompt("Mettre le seed du jeu: ")

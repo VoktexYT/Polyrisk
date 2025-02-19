@@ -5,7 +5,8 @@ export default class Ground  extends TileCategory {
     constructor(public readonly tile: Tile) {
         super(tile);
     }
-    event(callback: () => {}) {
+    event() {
+        this.tile.hoverEvent();
     }
 
     get getOffsetY(): number {

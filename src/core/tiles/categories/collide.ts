@@ -5,7 +5,7 @@ export default class Collide extends TileCategory {
     constructor(public readonly tile: Tile) {
         super(tile);
     }
-    event(callback: () => {}) {
+    event() {
     }
 
     get getOffsetY(): number {

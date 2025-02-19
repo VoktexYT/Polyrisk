@@ -17,8 +17,11 @@ import TileCategory from "../tiles/categories/tile-category";
 
 
 export default class TileMap {
-    private readonly width: number = 25;
-    private readonly height: number = 20;
+    //private readonly width: number = 25;
+    //private readonly height: number = 20;
+
+    private readonly width: number = 50;
+    private readonly height: number = 50;
 
     private map: Array<Array<number>> | undefined;
     public all_hex_map: Array<Array<any>> = [];
@@ -56,8 +59,11 @@ export default class TileMap {
 
                 if (!newTile) continue;
 
+
                 newTile.getTile.draw({x: y % 2 == 1 ? x + 0.5 : x, y: y});
                 rowHex.push(newTile);
+                newTile.event();
+
             }
 
             this.all_hex_map.push(rowHex);
