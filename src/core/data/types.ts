@@ -9,6 +9,7 @@ export type TileDataProperties = {
         index: number;
     };
     category: string;
+    offsetY: number;
 }
 
 export interface TileDataJson {

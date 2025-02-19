@@ -7,100 +7,57 @@
 
 import Phaser from 'phaser';
 
-import { position2D, size2D } from '../../constants/const'
-
 import { generateNoiseMap } from './map-generator';
+import Tile from "../tiles/tile";
+
+import tileDataJson from '../data/tile-data.json';
+import {TileDataProperties} from "../data/types";
+import {TileFactory} from "./tile-factory";
+import TileCategory from "../tiles/categories/tile-category";
 
 
 export default class TileMap {
-    private readonly width: number = 10;
-    private readonly height: number = 10;
+    private readonly width: number = 25;
+    private readonly height: number = 20;
 
-    private map: Array<Array<number>> = generateNoiseMap({
-        width: this.width,
-        height: this.height
-    });
-
+    private map: Array<Array<number>> | undefined;
     public all_hex_map: Array<Array<any>> = [];
 
     constructor(private readonly scene: Phaser.Scene) {}
 
-    public get getMapSize(): size2D {
-        return {
+    public drawMap(seed: string): void {
+        this.map = generateNoiseMap(seed, {
             width: this.width,
             height: this.height
-        };
-    }
+        });
 
-    public get getMapArray(): Array<Array<number>> {
-        return this.map;
-    }
-
-    public increaseMapSize(dirrection: position2D): void {
-        if (dirrection.x > 0) {
-            this.map = generateNoiseMap({
-                width: this.width,
-                height: this.height
-            }, 1);
-
-            this.drawMap();
-        }
-    }
-
-    // public floatTiles(): void {
-    //     for (let row of this.all_hex_map)
-    //     {
-    //         for (let hexTile of row)
-    //         {
-    //             switch(hexTile.getProperties.idx)
-    //             {
-    //                 case PERCENT_NOISE_TILE['light-sand'][0]:
-    //                     this.scene.tweens.add({
-    //                         targets: hexTile.image,
-    //                         duration: 1000
-    //                     });
-    //                     break;
-    //             }
-    //         }
-    //     }
-    // }
-
-    public drawMap(): void {
-        
-        const OFFSET_X = 0;
-        const OFFSET_Y = -30;
-        
         let isOffset = false;
 
-        // const hexagonTile: Tile = new Tile(this.scene);
-
-        let position: position2D = { x: 0, y: 0 };
-
-        // if (isOffset)
-            // position.x += (hexagonTile.width / 2 + (hexagonTile.width + OFFSET_X) * x);
-        // else
-            // position.x += (hexagonTile.width + OFFSET_X) * x - OFFSET_X / 2;
-
-        // position.y += ((hexagonTile.height + OFFSET_Y) * y);
 
         for (let y: number=0; y<this.height; y++) {
             let rowHex: Array<any> = [];
 
             for (let x: number=0; x<this.width; x++) {
-                const noiseValue: number = this.map[y][x];
 
-                // for (let key of Object.keys(PERCENT_NOISE_TILE) as Array<keyof typeof PERCENT_NOISE_TILE>)
-                //     {
-                //         let [idx, noise] = PERCENT_NOISE_TILE[key];
-                //
-                //         if (noiseValue < noise)
-                //         {
-                //             hexagonTile.drawTile(position, idx);
-                //             // hexagonTile.setProperties(idx, position, noise);
-                //             // rowHex.push(hexagonTile);
-                //             break;
-                //         }
-                //     }
+                const noiseValue: number = this.map[y][x];
+                let tileDataProperties: TileDataProperties = tileDataJson["tiles"][0];
+
+                // Find the tile type with noise value. Ex: 0.015 to 0.020 = Water tile
+                tileDataJson["tiles"].some((tileData) => {
+                    let minNoise = tileData.noiseRange[0];
+                    let maxNoise = tileData.noiseRange[1];
+                    tileDataProperties = tileData;
+                    return noiseValue >= minNoise && noiseValue < maxNoise;
+                });
+
+                let newTile: TileCategory | null = new TileFactory(
+                    new Tile(this.scene, tileDataProperties)
+                ).factory();
+
+                if (!newTile) continue;
+
+                newTile.getTile.draw({x: y % 2 == 1 ? x + 0.5 : x, y: y});
+                rowHex.push(newTile);
             }
 
             this.all_hex_map.push(rowHex);

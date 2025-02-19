@@ -10,18 +10,19 @@ import {createNoise2D, NoiseFunction2D} from "simplex-noise";
 import seedrandom from "seedrandom";
 
 // project
-import { size2D, SEED } from '../../constants/const';
+import { size2D } from '../../constants/const';
 
 /*
 * This function is used to generate procedural 2D map
 * */
 export function generateNoiseMap(
+    seed: string,
     widthHeight: size2D,
     offsetX: number = 0,
     offsetY: number = 0
 ): Array<Array<number>> {
     // Generate seed
-    const rgn: seedrandom.PRNG = seedrandom(SEED);
+    const rgn: seedrandom.PRNG = seedrandom(seed);
     const noise2D: NoiseFunction2D = createNoise2D(rgn);
     const scale: number = 0.1;
 

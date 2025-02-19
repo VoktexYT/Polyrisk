@@ -1,10 +1,12 @@
 import {TileDataProperties} from "../../data/types";
+import Tile from "../tile";
 
 export default abstract class TileCategory {
-    constructor(private category: TileDataProperties) {}
+    constructor(protected tile: Tile) {}
 
     abstract event(callback: () => {}): void;
-    public get getCategory(): TileDataProperties {
-        return this.category;
+    abstract get getOffsetY(): number;
+    public get getTile(): Tile {
+        return this.tile;
     }
 }

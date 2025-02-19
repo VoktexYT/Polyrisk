@@ -14,10 +14,10 @@ import TileCategory from "../tiles/categories/tile-category";
 
 import {FLUID_CATEGORY, GROUND_CATEGORY, COLLIDE_CATEGORY} from "../../constants/tiles";
 
-class TileFactory {
+export class TileFactory {
     public constructor(private tile: Tile) {}
 
-    public get getFactoryTile(): TileCategory | null {
+    public factory(): TileCategory | null {
         switch (this.tile.property.category) {
             case FLUID_CATEGORY:
                 return new Fluid(this.tile);

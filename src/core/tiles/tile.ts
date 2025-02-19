@@ -11,25 +11,26 @@ import {TileDataProperties} from "../data/types";
 * */
 export default class Tile {
     private image: Phaser.GameObjects.Image | undefined;
-    private width = 154;
-    private height = 156;
     private readonly scale = 0.5;
 
     public constructor(
         private readonly scene: Phaser.Scene,
         public readonly property: TileDataProperties,
-    ) {
-        this.width *= this.scale;
-        this.height *= this.scale;
-    }
+    ) {}
 
-    public draw(position: position2D, idx: number): void {
+    public draw(position: position2D): void {
         this.image = this.scene.add.image(
-            position.x, position.y, this.property.src.key, idx
+            0, 0, this.property.src.key, this.property.src.index
+        );
+
+        this.image.setPosition(
+            position.x * this.image.width * this.scale * 0.99,
+            position.y * this.image.height * this.scale * 0.61 - this.property.offsetY * 8,
         );
 
         this.image.setScale(this.scale);
         this.image.setInteractive();
+        this.hoverEvent();
     }
 
     public hoverEvent(): void {

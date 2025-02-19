@@ -6,16 +6,16 @@
         "frameWidth": 154,
         "frameHeight": 156
       },
-      "src": "tiles/3d-tiles.png"
+      "src": "assets/tiles/3d-tiles.png"
     },
 
     {
-      "key": "tiles/mountain-tiles",
+      "key": "assets/tiles/mountain-tiles",
       "config": {
         "frameWidth": 156,
         "frameHeight": 146
       },
-      "src": "tiles/mountain-tiles.png"
+      "src": "assets/tiles/mountain-tiles.png"
     },
 
     {
@@ -24,7 +24,7 @@
         "frameWidth": 154,
         "frameHeight": 128
       },
-      "src": "tiles/2d-tiles.png"
+      "src": "assets/tiles/2d-tiles.png"
     },
 
     {
@@ -33,7 +33,7 @@
         "frameWidth": 156,
         "frameHeight": 126
       },
-      "src": "tiles/border-tiles.png"
+      "src": "assets/tiles/border-tiles.png"
     },
 
     {
@@ -42,7 +42,7 @@
         "frameWidth": 154,
         "frameHeight": 188
       },
-      "src": "tiles/decorations.png"
+      "src": "assets/tiles/decorations.png"
     }
   ]
 }
