@@ -16,7 +16,6 @@ vi.mock('phaser/src/renderer/webgl/WebGLRenderer', () => ({
 
 // Canvas polyfill
 // Remove : Error: Not implemented: HTMLCanvasElement.prototype.getContext
-// 
 global.HTMLCanvasElement = class {
     private _canvas = createCanvas(0, 0);
     getContext(type: string) {
