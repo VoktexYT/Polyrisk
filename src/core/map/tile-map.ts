@@ -28,42 +28,51 @@ export default class TileMap {
 
     constructor(private readonly scene: Phaser.Scene) {}
 
-    public drawMap(seed: string): void {
+    private generateMap(seed: string) {
         this.map = generateNoiseMap(seed, {
             width: this.width,
             height: this.height
         });
+    }
+
+    private getTileProperties(noiseValue: number): TileDataProperties {
+        let tileDataProperties: TileDataProperties = tileDataJson["tiles"][0];
+
+        // Find the tile type with noise value. Ex: 0.015 to 0.020 = Water tile
+        tileDataJson["tiles"].some((tileData) => {
+            let minNoise = tileData.noiseRange[0];
+            let maxNoise = tileData.noiseRange[1];
+            tileDataProperties = tileData;
+            return noiseValue >= minNoise && noiseValue < maxNoise;
+        });
+
+        return tileDataProperties;
+    }
+
+    private initTile(tileCategory: TileCategory, x: number, y: number): void {
+        tileCategory.getTile.draw({x: y % 2 == 1 ? x + 0.5 : x, y: y});
+        tileCategory.event();
+    }
+
+    //
+    public drawMap(seed: string): void {
+        this.generateMap(seed);
+        if (!this.map) return;
 
         let isOffset = false;
-
 
         for (let y: number=0; y<this.height; y++) {
             let rowHex: Array<any> = [];
 
             for (let x: number=0; x<this.width; x++) {
-
-                const noiseValue: number = this.map[y][x];
-                let tileDataProperties: TileDataProperties = tileDataJson["tiles"][0];
-
-                // Find the tile type with noise value. Ex: 0.015 to 0.020 = Water tile
-                tileDataJson["tiles"].some((tileData) => {
-                    let minNoise = tileData.noiseRange[0];
-                    let maxNoise = tileData.noiseRange[1];
-                    tileDataProperties = tileData;
-                    return noiseValue >= minNoise && noiseValue < maxNoise;
-                });
+                let tileDataProperties: TileDataProperties =
+                        this.getTileProperties(this.map[y][x]);
 
                 let newTile: TileCategory | null = new TileFactory(
                     new Tile(this.scene, tileDataProperties)
                 ).factory();
 
-                if (!newTile) continue;
-
-
-                newTile.getTile.draw({x: y % 2 == 1 ? x + 0.5 : x, y: y});
-                rowHex.push(newTile);
-                newTile.event();
-
+                if (newTile) this.initTile(newTile, x, y);
             }
 
             this.all_hex_map.push(rowHex);
